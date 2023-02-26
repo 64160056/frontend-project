@@ -17,7 +17,7 @@ onMounted(async () => {
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Price</th>
+        <th>Email</th>
         <th>Operations</th>
       </tr>
     </thead>
