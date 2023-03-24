@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { useAuthStore } from "@/stores/auth";
 import { ref } from "vue";
 
+const authStore = useAuthStore();
 const drawer = ref(true);
 const rail = ref(true);
 </script>
@@ -45,6 +47,12 @@ const rail = ref(true);
         title="User"
         value="user"
         to="/user"
+      ></v-list-item>
+      <v-list-item
+        prepend-icon="mdi-exit-to-app"
+        title="logout"
+        value="logout"
+        @click="authStore.logout"
       ></v-list-item>
     </v-list>
   </v-navigation-drawer>
