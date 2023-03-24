@@ -51,6 +51,7 @@ const router = createRouter({
       },
       meta: {
         layout: "MainLayout",
+        requiresAuth: true,
       },
     },
     {
@@ -64,6 +65,7 @@ const router = createRouter({
       },
       meta: {
         layout: "MainLayout",
+        requiresAuth: true,
       },
     },
     {
@@ -76,8 +78,27 @@ const router = createRouter({
         layout: "FullLayout",
       },
     },
-
   ],
+});
+function isLogin() {
+  const user = localStorage.getItem("user");
+  if (user) {
+    return true;
+  }
+  return false;
+}
+router.beforeEach((to, from) => {
+  // instead of having to check every route record with
+  // to.matched.some(record => record.meta.requiresAuth)
+  if (to.meta.requiresAuth && !isLogin()) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    return {
+      path: "/login",
+      // save the location we were at to come back later
+      query: { redirect: to.fullPath },
+    };
+  }
 });
 
 export default router;

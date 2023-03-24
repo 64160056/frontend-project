@@ -10,7 +10,7 @@ export const useAuthStore = defineStore("auth", () => {
   const loadingStore = useLoadingStore();
   const messageStore = useMessageStore();
 
-  const isAuth = computed(() => {
+  const isLogin = () => {
     // authName is not empty
     return authName.value !== "";
     const user = localStorage.getItem("user");
@@ -18,7 +18,7 @@ export const useAuthStore = defineStore("auth", () => {
       return true;
     }
     return false;
-  });
+  };
 
   //localStorage.setItem("token", userName);
   const login = async (username: string, password: string): Promise<void> => {
@@ -40,5 +40,5 @@ export const useAuthStore = defineStore("auth", () => {
     localStorage.removeItem("token");
     router.replace("/login");
   };
-  return { login, logout };
+  return { login, logout, isLogin };
 });
