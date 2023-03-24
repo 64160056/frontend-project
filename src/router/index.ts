@@ -66,6 +66,17 @@ const router = createRouter({
         layout: "MainLayout",
       },
     },
+    {
+      path: "/login",
+      name: "login",
+      components: {
+        default: LoginView,
+      },
+      meta: {
+        layout: "FullLayout",
+      },
+    },
+
   ],
 });
 
